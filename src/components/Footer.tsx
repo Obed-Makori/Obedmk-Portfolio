@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import Logo from "@/assets/Obed_logo.png";
+import Logo from "@/assets/obed_logo.png";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const navigate = useNavigate();
