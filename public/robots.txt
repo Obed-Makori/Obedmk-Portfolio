@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Important pages for data analyst keywords
+Allow: /
+Allow: /blog/*
+
+# Block any unwanted crawling
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Crawl delay
+Crawl-delay: 1
