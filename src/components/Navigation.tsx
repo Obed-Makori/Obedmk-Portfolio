@@ -5,7 +5,7 @@ import { X } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 
-import Logo from "@/assets/Obed_logo.png";
+import Logo from "@/assets/obed_logo.png";
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('home');
