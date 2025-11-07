@@ -4,7 +4,6 @@ import { Drawer, DrawerContent, DrawerTrigger, DrawerClose } from '@/components/
 import { X } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
-
 import Logo from "@/assets/obed_logo.png";
 
 const Navigation = () => {
@@ -24,21 +23,39 @@ const Navigation = () => {
     { id: 'contact', label: 'Contact' },
   ];
 
+  // Update active section based on route
+  useEffect(() => {
+    if (location.pathname.startsWith('/projects')) {
+      setActiveSection('projects');
+    } else if (location.pathname.startsWith('/blog')) {
+      setActiveSection('blogs');
+    } else if (location.pathname.startsWith('/about')) {
+      setActiveSection('about');
+    } else if (location.pathname.startsWith('/contact')) {
+      setActiveSection('contact');
+    } else if (location.pathname === '/') {
+      // Only update based on scroll on home page
+      setActiveSection('home');
+    }
+  }, [location.pathname]);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      // Update active section based on scroll position
-      const sections = navItems.map(item => item.id);
-      const scrollPosition = window.scrollY + 100;
+      // Only update active section based on scroll position if on home page
+      if (location.pathname === '/') {
+        const sections = navItems.map(item => item.id);
+        const scrollPosition = window.scrollY + 100;
 
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(sectionId);
-            break;
+        for (const sectionId of sections) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const { offsetTop, offsetHeight } = element;
+            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+              setActiveSection(sectionId);
+              break;
+            }
           }
         }
       }
@@ -46,13 +63,12 @@ const Navigation = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   const scrollToSection = (sectionId: string) => {
-    // If we're on a blog detail page, navigate to home first
-    if (location.pathname.startsWith('/blog/')) {
+    // If not on home page, navigate there first
+    if (location.pathname !== '/') {
       navigate('/');
-      // Wait for navigation to complete, then scroll
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -60,24 +76,37 @@ const Navigation = () => {
         }
       }, 100);
     } else {
-      // If we're on the home page, just scroll
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
-    setIsMobileMenuOpen(false); // Close mobile menu after navigation
+    setIsMobileMenuOpen(false);
   };
 
   const handleLogoClick = () => {
-    if (location.pathname !== '/') {
-      navigate('/');
-    } else {
+    if (location.pathname === '/') {
       scrollToSection('home');
+    } else {
+      navigate('/');
     }
   };
 
-  return (
+  const handleNavClick = (navId: string) => {
+    // Check if it's a route or a section
+    const routes = ['about', 'projects', 'contact', 'blogs'];
+    
+    if (routes.includes(navId)) {
+      // Navigate to dedicated route
+      navigate(`/${navId}`);
+      setIsMobileMenuOpen(false);
+    } else {
+      // Scroll to section on home page
+      scrollToSection(navId);
+    }
+  };
+
+ return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-background/80 backdrop-blur-md border-b border-border' : 'bg-transparent'
     }`}>

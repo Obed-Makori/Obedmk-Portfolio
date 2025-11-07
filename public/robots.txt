@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://obedmk.me/sitemap.xml
 
 # Important pages for data analyst keywords
 Allow: /

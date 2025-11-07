@@ -296,7 +296,7 @@ const HeroSection = () => {
                   }}
                 >
                   <motion.img
-                    src="/Obed-logo.png"
+                    src="/src/assets/obed-logo.png"
                     alt="Obed Logo"
                     width={160} 
                     height={160} 

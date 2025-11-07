@@ -214,8 +214,8 @@ const AboutSection = () => {
             <Button 
               className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow-primary hover:scale-105 transition-transform"
               onClick={() => {
-                // Add your resume download logic here
-                const resumeUrl = "/path-to-your-resume.pdf"; // Update with actual path
+                // Resume path
+                const resumeUrl = "/path-to-your-resume.pdf"; 
                 const link = document.createElement('a');
                 link.href = resumeUrl;
                 link.download = 'Obed_Makori_Resume.pdf';
