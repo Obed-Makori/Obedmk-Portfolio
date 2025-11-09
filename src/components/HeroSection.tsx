@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import Typed from 'typed.js';
+import Logo from '../assets/Obed-logo.png';
 
 const HeroSection = () => {
   const typedRef = useRef(null);
@@ -296,7 +297,7 @@ const HeroSection = () => {
                   }}
                 >
                   <motion.img
-                    src="/src/assets/Obed-logo.png"
+                    src={Logo}
                     alt="Obed"
                     width={160} 
                     height={160} 
