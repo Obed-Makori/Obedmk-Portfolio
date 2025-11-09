@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import image from "../assets/image.png"; 
+// import image from "../assets/image.png"; 
 
 interface SEOHeadProps {
   title: string;
@@ -21,7 +21,7 @@ const SEOHead = ({
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
 
   
-  const imageUrl = `${baseUrl}${image.replace(/^\.{0,2}\//, "/")}`;
+  const imageUrl = `${baseUrl}/BusinessCard.png`;
 
   
   const defaultStructuredData = {
