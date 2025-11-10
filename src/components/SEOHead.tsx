@@ -1,10 +1,10 @@
 import { Helmet } from "react-helmet";
-// import image from "../assets/image.png"; 
 
 interface SEOHeadProps {
   title: string;
   description: string;
   canonical?: string;
+  image?: string; // added prop for flexibility
   type?: string;
   structuredData?: object;
 }
@@ -13,17 +13,19 @@ const SEOHead = ({
   title,
   description,
   canonical,
+  image = "/BusinessCard.png", // default image path
   type = "website",
   structuredData,
 }: SEOHeadProps) => {
-  const baseUrl = "https://obedmk.me";
+  const baseUrl = "https://www.obedmk.me"; // ensure this matches your final domain
   const fullTitle = `${title} | Obed Makori - Data Analyst & BI Developer`;
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
 
-  
-  const imageUrl = `${baseUrl}/BusinessCard.png`;
+  // Use absolute image URL — this is crucial for crawlers
+  const imageUrl = image.startsWith("http")
+    ? image
+    : `${baseUrl}${image}`;
 
-  
   const defaultStructuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -51,6 +53,7 @@ const SEOHead = ({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:alt" content="Obed Makori portfolio preview" />
       <meta property="og:locale" content="en_US" />
       <meta property="og:site_name" content="Obed Makori - Data Analyst" />
 
@@ -60,7 +63,8 @@ const SEOHead = ({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={imageUrl} />
-      <meta name="twitter:creator" content="@makori_obed254" />
+      <meta name="twitter:image:alt" content="Obed Makori portfolio preview" />
+      <meta name="twitter:creator" content="@obedmakori254" />
 
       {/* Structured Data */}
       <script type="application/ld+json">
