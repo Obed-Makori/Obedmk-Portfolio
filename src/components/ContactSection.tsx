@@ -110,7 +110,7 @@ const ContactSection = () => {
     };
 
     try {
-      const result = await emailjs.send("service_0n3ny6o", "template_86mv30o", params);
+      const result = await emailjs.send("service_s3vdxoo", "template_86mv30o", params);
       
       if (result.text === "OK") {
         await Swal.fire({

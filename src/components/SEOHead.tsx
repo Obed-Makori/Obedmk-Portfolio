@@ -4,7 +4,7 @@ interface SEOHeadProps {
   title: string;
   description: string;
   canonical?: string;
-  image?: string; // added prop for flexibility
+  image?: string; 
   type?: string;
   structuredData?: object;
 }
@@ -13,15 +13,15 @@ const SEOHead = ({
   title,
   description,
   canonical,
-  image = "/BusinessCard.png", // default image path
+  image = "/BusinessCard.png", 
   type = "website",
   structuredData,
 }: SEOHeadProps) => {
-  const baseUrl = "https://www.obedmk.me"; // ensure this matches your final domain
+  const baseUrl = "https://www.obedmk.me"; 
   const fullTitle = `${title} | Obed Makori - Data Analyst & BI Developer`;
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
 
-  // Use absolute image URL — this is crucial for crawlers
+  //  absolute image URL 
   const imageUrl = image.startsWith("http")
     ? image
     : `${baseUrl}${image}`;
