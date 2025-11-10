@@ -120,7 +120,7 @@ const ContactSection = () => {
         });
         
         // Send auto-reply
-        await emailjs.send("service_0n3ny6o", "template_g7tvztb", params);
+        await emailjs.send("service_s3vdxoo", "template_g7tvztb", params);
         
         // Reset form
         setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
